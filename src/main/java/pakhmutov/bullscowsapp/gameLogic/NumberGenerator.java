@@ -1,4 +1,6 @@
-package pakhmutov.bullscowsapp;
+package pakhmutov.bullscowsapp.gameLogic;
+
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -7,15 +9,16 @@ import java.util.List;
 /**
  * класс для генерации числа
  */
+@Component
 public class NumberGenerator {
     /**
      * набор исходных цифр
      */
-    List<Integer> numberList = new LinkedList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
+    private final List<Integer> numberList = new LinkedList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
 
     /**
-     * @param rank - разрядность числа, которое требуется сгенерировать,
-     * причём он должен быть в пределах размера набора исходных цифр.
+     * @param rank разрядность числа, которое требуется сгенерировать,
+     *             причём он должен быть в пределах размера набора исходных цифр.
      * @return случайное число в виде списка из его цифр.
      */
     public List<Integer> generateNumber(int rank) {
@@ -23,10 +26,10 @@ public class NumberGenerator {
         int numberListSize = numberList.size();
 
         try {
-            if (rank<=0) throw new RuntimeException();
+            if (rank <= 0) throw new RuntimeException();
 
             for (int i = 0; i < rank; i++) {
-                int randomIndexOfList = (int) (Math.random() * (numberListSize-i));
+                int randomIndexOfList = (int) (Math.random() * (numberListSize - i));
                 int oneOfResultNumber = numberList.get(randomIndexOfList);
                 numberList.remove(randomIndexOfList);
                 result.add(oneOfResultNumber);
@@ -37,8 +40,5 @@ public class NumberGenerator {
         }
         return result;
     }
-
-    public static void main(String[] args) {
-        new NumberGenerator().generateNumber(4).forEach(System.out::println);
-    }
 }
+
