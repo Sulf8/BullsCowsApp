@@ -8,7 +8,6 @@ import pakhmutov.bullscowsapp.service.GameService;
 
 import java.util.List;
 
-
 @Controller
 @RequestMapping("/bc/game")
 public class GameController {
@@ -21,18 +20,18 @@ public class GameController {
 
 
     @ModelAttribute
-    public void generate(Model model){
+    public void generate(Model model) {
         model.addAttribute("number", gameService.generate(4));
 
     }
 
     @PostMapping("/check")
     public String check(@ModelAttribute("name") String name, @RequestBody List<Integer> userNumber,
-                        @ModelAttribute ("number") List<Integer> sample ,Model model){
+                        @ModelAttribute("number") List<Integer> sample, Model model) {
         COUNT++;
         gameService.add(name, userNumber, gameService.check(userNumber, sample));
         if (gameService.check(userNumber, sample).equals("4Б0К")) return "redirect:/bc/game/endGame";
-        //TODO вот тут явно неправильно, поскольку нужно как-то обновлять UserNumber
+            //TODO вот тут явно неправильно, поскольку нужно как-то обновлять UserNumber
         else return "redirect:/bc/game/check";
 
     }
@@ -42,7 +41,7 @@ public class GameController {
     public String end(@RequestParam("name") String name,
                       @RequestParam("number") String number,//нужно забрать c generate
                       @RequestParam("amount") int amount,
-                      Model model){
+                      Model model) {
         StringBuilder sb = new StringBuilder();
         sb.append("Поздравляем, ")
                 .append(name)

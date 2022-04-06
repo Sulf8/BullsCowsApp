@@ -1,5 +1,6 @@
 package pakhmutov.bullscowsapp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pakhmutov.bullscowsapp.entity.Ladder;
 import pakhmutov.bullscowsapp.repositories.LadderRepository;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class LadderService {
     private final LadderRepository ladderRepository;
 
+    @Autowired
     public LadderService(LadderRepository ladderRepository) {
         this.ladderRepository = ladderRepository;
     }

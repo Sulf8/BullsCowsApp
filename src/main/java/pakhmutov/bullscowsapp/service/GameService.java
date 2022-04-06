@@ -1,21 +1,22 @@
 package pakhmutov.bullscowsapp.service;
 
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pakhmutov.bullscowsapp.gameLogic.NumberGenerator;
 import pakhmutov.bullscowsapp.entity.Game;
 import pakhmutov.bullscowsapp.gameLogic.Checker;
-import pakhmutov.bullscowsapp.gameLogic.NumberGenerator;
 import pakhmutov.bullscowsapp.repositories.GameRepository;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class GameService {
+public class GameService{
     private final GameRepository gameRepository;
     private final Checker checker;
     private final NumberGenerator numberGenerator;
 
+    @Autowired
     public GameService(GameRepository gameRepository, Checker checker, NumberGenerator numberGenerator) {
         this.gameRepository = gameRepository;
         this.checker = checker;
@@ -32,12 +33,12 @@ public class GameService {
     /**
      * @see /gameLogic/Checker.java
      */
-    public String check(List<Integer>userList, List<Integer> sample){
-        return checker.check(userList, sample);
+    public String check(List<Integer> userNumber, List<Integer> sample) {
+        return checker.check(userNumber, sample);
     }
 
     //@Query(value = "INSERT INTO Game VALUES (:username, :userNumber, :animalCode)", nativeQuery = true)
-    public void add(String username, List<Integer> userNumber, String animalCode){
+    public void add(String username, List<Integer> userNumber, String animalCode) {
         gameRepository.save(new Game(username, userNumber, animalCode));
     }
 
