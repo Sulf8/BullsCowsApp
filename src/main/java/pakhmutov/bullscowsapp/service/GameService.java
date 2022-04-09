@@ -24,29 +24,21 @@ public class GameService{
     }
 
     /**
-     * @see /gameLogic/NumberGenerator.java
+     * {@Link pakhmutov.bullscowsapp.gameLogic.Checker#check(List<Integer>, List<Integer>) check}
      */
     public List<Integer> generate(int i) {
         return numberGenerator.generateNumber(i);
     }
 
     /**
-     * @see /gameLogic/Checker.java
+     * {@Link pakhmutov.bullscowsapp.gameLogic.NumberGenerator#generateNumber(int) generateNumber}
      */
     public String check(List<Integer> userNumber, List<Integer> sample) {
         return checker.check(userNumber, sample);
     }
 
     //@Query(value = "INSERT INTO Game VALUES (:username, :userNumber, :animalCode)", nativeQuery = true)
-    public void add(String username, List<Integer> userNumber, String animalCode) {
+    public void addTry(String username, List<Integer> userNumber, String animalCode) {
         gameRepository.save(new Game(username, userNumber, animalCode));
     }
-
-
-    public boolean isVictory() {
-        String animalCode = null;
-        return animalCode.equals("4Б0К");
-    }
-
-
 }

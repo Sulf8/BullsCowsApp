@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div>
+    <b th:text="'Начнём игру, '+ ${username} + '!'"></b>
+    Компьютер загадывает <u th:text="${magicInt}"></u>
+    -х значное число. Цифры загаданного числа не повторяются.
+    </br>Задача пользователя угадать загаданное число.
+    </br>В каждую попытку пользователь дает компьютеру свой вариант числа.
+    </br>Компьютер сообщает сколько цифр точно угадано (Б) и сколько цифр угадано без учета
+    позиции (К).
+    <br>
+    <br>
+</div>
+<div>
+    Компьютер загадал число
+    <b th:each="num : ${sample}">
+        <b th:text="${num}"></b>
+    </b>
+
+    <!--th:object="${game}"-->
+
+    <form th:method="POST" th:action="@{/bc/game/choice}">
+        <div th:each="num : ${listForChoice}">
+            <button type="submit" name="oneOfNumber" value="${num}">
+                <b th:text="${num}"></b>
+            </button>
+
+            <br>
+            <br>
+        </div>
+        <input type="submit" value="Принять"/>
+    </form>
+
+
+    <br>
+    <br>
+</div>
+
+</body>
+</html>

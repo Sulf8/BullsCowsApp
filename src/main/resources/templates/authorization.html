@@ -2,23 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <title>Быки и коровы</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<b>Вас приветствует игра Быки и коровы! Введите свои данные:</b>
-<br>
-<br>
+<div>
+    <b>Вас приветствует игра Быки и коровы! Введите свои данные:</b>
+    <br>
+    <br>
+</div>
 <form th:method="POST" th:action="@{/bc}" th:object="${user}">
-  <div>
-    <label for="username">Введите nickname: </label>
-    <input type="text" th:field="*{username}"  id="username"/>
-    <br>
-    <label for="password">Введите password:</label>
-    <input type="text" th:field="*{password}" id="password" />
-    <br>
-    <br>
-    <input type="submit" value="Принять" />
-  </div>
+    <div>
+        <label for="username">Введите nickname: </label>
+        <input type="text" th:field="*{username}" id="username"/>
+        <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</div>
+        <br>
+        <label for="password">Введите password:</label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
+        <br>
+        <input type="submit" value="Принять"/>
+    </div>
 </form>
 </body>
 </html>

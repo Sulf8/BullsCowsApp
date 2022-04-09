@@ -29,7 +29,6 @@ public class UserService {
     }
 
     /**
-     *
      * @param userName имя пользователя
      * @return пользователь с данным именем
      */
@@ -38,7 +37,7 @@ public class UserService {
         return usersRepository.findById(userName).orElse(null);
     }
 
-    /**     *
+    /**
      * @param user пользователь, которого необходимо добавить в базу данных
      * добавляет пользователя в базу данных
      */
