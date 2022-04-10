@@ -4,12 +4,9 @@ package pakhmutov.bullscowsapp.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pakhmutov.bullscowsapp.entity.Game;
-import pakhmutov.bullscowsapp.entity.User;
 import pakhmutov.bullscowsapp.service.GameService;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -53,6 +50,7 @@ public class GameController {
     }
 
     /**
+     * @param username текущий пользователь
      * @return главная страница игры
      */
     @GetMapping
@@ -61,32 +59,30 @@ public class GameController {
         return "game";
     }
 
+    /**
+     * @param oneOfNumber взятая с формы одна из цифр числа пользователя
+     */
     @PostMapping
-    public String getTry(@RequestParam(value = "oneOfNumber") @NotEmpty int oneOfNumber, Model model) {
+    public void addOneOfNumber(@RequestParam(value = "oneOfNumber") @NotEmpty int oneOfNumber, Model model) {
         if (userNumber.size() != magicInt) {
             userNumber.add(oneOfNumber);
-            return null;//что вернуть?????????????????????????????????????????
-        } else return "redirect:/bc/game/check";
-
-        //@SuppressWarnings("unchecked")//некрасиво
-        List<Integer> sampleList = (List<Integer>) model.getAttribute("sample");
-
-        String animalCode = gameService.check(userNumber, sampleList);
-        gameService.addTry((String) model.getAttribute("username"), userNumber, animalCode);
-        if (animalCode.equals("4Б0К")) return "redirect:/bc/game/endGame";
-        return null;
+        }
     }
 
-
+    /**
+     * @param username текущий пользователь
+     * @return страница окончания игры, если пользователь отгадал заданное число
+     */
     @PostMapping("/check")
-    public String check(@ModelAttribute("name") String name, @RequestBody List<Integer> userNumber,
-                        @ModelAttribute("number") List<Integer> sample, Model model) {
+    public String goCheck(@ModelAttribute("username") final String username, Model model){
         COUNT++;
-        gameService.addTry(name, userNumber, gameService.check(userNumber, sample));
-        if (gameService.check(userNumber, sample).equals("4Б0К")) return "redirect:/bc/game/endGame";
-            //TODO вот тут явно неправильно, поскольку нужно как-то обновлять UserNumber
-        else return "redirect:/bc/game/check";
+        @SuppressWarnings("unchecked")//некрасиво
+        List<Integer> sampleList = (List<Integer>) model.getAttribute("sample");
+        String animalCode = gameService.check(userNumber, sampleList);
 
+        gameService.addTry((String) model.getAttribute("username"), userNumber, animalCode);
+        if (animalCode.equals("4Б0К")) return "endGame";
+        else return  "redirect:/bc/game";
     }
 
     /**
@@ -103,8 +99,7 @@ public class GameController {
                 .append(COUNT)
                 .append(" попытки!");
         model.addAttribute("victoryMassage", sb.toString());
-        return "endGame";
-    }
+        return "endGame";    }
 
 
 }
