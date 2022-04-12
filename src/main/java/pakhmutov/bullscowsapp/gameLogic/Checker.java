@@ -2,9 +2,11 @@ package pakhmutov.bullscowsapp.gameLogic;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * класс для сравнения чисел
@@ -14,14 +16,15 @@ public class Checker {
 
     /**
      * @param userNumber комбинация цифр, введённая пользователем.
-     * @param sample   образец для сравнения.
+     * @param sample     образец для сравнения.
      * @return строка с количеством быков и коров.
-     * @see ..... обеспечение корректности цифр из userList.
      */
     public String check(List<Integer> userNumber, List<Integer> sample) {
         int bulls = 0;
         int cows = 0;
         StringBuilder animalSB = new StringBuilder();
+
+        if (userNumber ==null || sample==null) throw new NullPointerException("пусто!");
 
         if (userNumber.size() != sample.size())
             throw new IllegalArgumentException("количество знаков должно быть равно " + sample.size());
@@ -38,8 +41,23 @@ public class Checker {
                 }
             }
         }
-
         return animalSB.append(bulls).append("Б").append(cows).append("К").toString();
+
+    }
+
+    /**
+     * @param userNumberStr комбинация цифр, введённая пользователем в виде строки
+     * @param sample        образец для сравнения
+     * @return строка с количеством быков и коров
+     */
+    public String check(String userNumberStr, List<Integer> sample) {
+
+        List<Integer> userNumber = userNumberStr.chars()
+                .filter(Character::isDigit)
+                .map(Character::getNumericValue)
+                .boxed()
+                .collect(Collectors.toList());
+        return check(userNumber, sample);
     }
 
     //TODO добавить нормальный тест
@@ -47,9 +65,6 @@ public class Checker {
         List<Integer> sample = new NumberGenerator().generateNumber(4);
         sample.forEach(System.out::print);
         System.out.println();
-
-        String str = new Checker().check(new LinkedList<>(Arrays.asList(5, 2, 3, 0)), sample);
-        System.out.println(str);
     }
 }
 
