@@ -7,6 +7,8 @@ import pakhmutov.bullscowsapp.entity.Game;
 import pakhmutov.bullscowsapp.gameLogic.Checker;
 import pakhmutov.bullscowsapp.repositories.GameRepository;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +29,13 @@ public class GameService{
      * {@Link pakhmutov.bullscowsapp.gameLogic.Checker#check(List<Integer>, List<Integer>) check}
      */
     public List<Integer> generate(int i) {
-        return numberGenerator.generateNumber(i);
+        List<Integer> result = new ArrayList<>();
+        try {
+            result = numberGenerator.generateNumber(i);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**

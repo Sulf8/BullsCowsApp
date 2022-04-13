@@ -3,6 +3,7 @@ package pakhmutov.bullscowsapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pakhmutov.bullscowsapp.entity.Ladder;
+import pakhmutov.bullscowsapp.entity.User;
 import pakhmutov.bullscowsapp.repositories.LadderRepository;
 
 import java.util.Comparator;
@@ -25,9 +26,23 @@ public class LadderService {
      * @return список релуьтатов пользователей, отсортированный на наименьшему количеству попыток
      */
     //@Query(value = "SELECT * FROM Ladder l ORDER BY l.countOfTrys DESC ", nativeQuery = true)
-    public List<Ladder> showLadder(){
-       return ladderRepository.findAll().stream()
-               .sorted(Comparator.comparingInt(Ladder::getAVGcountOfTrys).reversed())
-               .collect(Collectors.toList());
+    public List<Ladder> showLadder() {
+        return ladderRepository.findAll().stream()
+                .sorted(Comparator.comparingInt(Ladder::getAVGcountOfTrys).reversed())
+                .collect(Collectors.toList());
+    }
+
+    /**     *
+     * @param username текущий пользователь
+     * @param count количество попыток текущего пользователя до угадывания
+     */
+    //@Query (value = "INSERT INTO Ladder VALUES (:username, :count))", nativeQuery = true)
+    public void addInLadder(String username, int count) {
+        ladderRepository.save(new Ladder(username, count));
+    }
+
+    //TODO написать тут или в репо
+    public List<Ladder> getAVGcountOfTrys(List<Ladder> ladderList){
+        return null;
     }
 }

@@ -22,5 +22,12 @@ public class Ladder {
     /**
      * поле с средним количестсвом попыток до угадывания числа
      */
-    private int AVGcountOfTrys;
+    private int countOfTrys;
+    //private int AVGCountOfTrys;
+
+    //TODO написать тут или сервисе
+    public static <T> int getAVGcountOfTrys(T t) {
+        return 42;
+    }
+
 }

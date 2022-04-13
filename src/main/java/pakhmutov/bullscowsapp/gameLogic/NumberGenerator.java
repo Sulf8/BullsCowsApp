@@ -22,11 +22,9 @@ public class NumberGenerator {
      * @return случайное число в виде списка из его цифр.
      */
     public List<Integer> generateNumber(int rank) {
+        if (rank <= 0) throw new IllegalArgumentException("Попробуйте ввести другую разрядность");
         List<Integer> result = new LinkedList<>();
         int numberListSize = numberList.size();
-
-        try {
-            if (rank <= 0) throw new RuntimeException();
 
             for (int i = 0; i < rank; i++) {
                 int randomIndexOfList = (int) (Math.random() * (numberListSize - i));
@@ -34,10 +32,6 @@ public class NumberGenerator {
                 numberList.remove(randomIndexOfList);
                 result.add(oneOfResultNumber);
             }
-        } catch (RuntimeException e) {
-            System.err.println("Попробуйте ввести другую разрядность");
-            result.clear();
-        }
         return result;
     }
 }
