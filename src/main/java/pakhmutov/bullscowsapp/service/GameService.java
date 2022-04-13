@@ -34,7 +34,23 @@ public class GameService{
      * {@Link pakhmutov.bullscowsapp.gameLogic.NumberGenerator#generateNumber(int) generateNumber}
      */
     public String check(List<Integer> userNumber, List<Integer> sample) {
-        return checker.check(userNumber, sample);
+        String result = "";
+        try {
+            result = checker.check(userNumber, sample);
+        } catch (IllegalArgumentException|NullPointerException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public String check(String userNumberStr, List<Integer> sample) {
+        String result = "";
+        try {
+            result = checker.check(userNumberStr, sample);
+        } catch (IllegalArgumentException|NullPointerException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     //@Query(value = "INSERT INTO Game VALUES (:username, :userNumber, :animalCode)", nativeQuery = true)

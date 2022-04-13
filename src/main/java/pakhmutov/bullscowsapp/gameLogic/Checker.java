@@ -51,12 +51,17 @@ public class Checker {
      * @return строка с количеством быков и коров
      */
     public String check(String userNumberStr, List<Integer> sample) {
+        if (userNumberStr ==null || sample==null) throw new NullPointerException("пусто!");
 
         List<Integer> userNumber = userNumberStr.chars()
                 .filter(Character::isDigit)
                 .map(Character::getNumericValue)
                 .boxed()
                 .collect(Collectors.toList());
+
+        if (userNumber.size() != sample.size())
+            throw new IllegalArgumentException("количество знаков должно быть равно " + sample.size());
+
         return check(userNumber, sample);
     }
 
