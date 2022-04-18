@@ -7,7 +7,7 @@
 <body>
 <div>
     <b th:text="'Начнём игру, '+ ${username} + '!'"></b>
-    Компьютер загадывает <u th:text="${magicInt}"></u>
+    Компьютер загадал <u th:text="${magicInt}"></u>
     значное число. Цифры загаданного числа не повторяются.
     </br>Задача пользователя угадать загаданное число.
     </br>В каждую попытку пользователь дает компьютеру свой вариант числа.
@@ -17,6 +17,7 @@
     <br>
 </div>
 <div>
+    <!-- закомментить в релизной версии -->
     <div>Компьютер загадал число
         <b th:each="num : ${sample}">
             <b th:text="${num}"></b>
@@ -33,20 +34,13 @@
         <br>
         <br>
     </div>
-
-    <!--<div>
-        <form th:method="POST" th:action="@{/bc/game/choice}">
-            <div th:each="num : ${listForChoice}">
-                <button type="submit" name="oneOfNumber" th:value="${num}">
-                    <b th:text="${num}"></b>
-                </button>
-                <br>
-                <br>
-            </div>
-        </form>
-    </div>-->
     <div>
         <b th:text="'Ваши попытки, '+${username}+':'"></b>
+        <b th:each="try : ${userTrys}">
+            <b th:text="${try.getUserNumber()} + ' ' + ${try.getAnimalCode()}"></b>
+            <br>
+            <br>
+        </b>
         <br>
         <br>
     </div>

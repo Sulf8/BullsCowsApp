@@ -1,11 +1,14 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb #jdbc:h2:file:~/mydb #проверить ,что файл с бд перекидывается!
+    #url: jdbc:h2:mem:testdb
+    url: jdbc:h2:file:./bullscowsdb
     username: sa
     password: password
     driverClassName: org.h2.Driver
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
   h2:
     console:
       enabled: true

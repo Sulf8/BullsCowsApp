@@ -10,24 +10,12 @@ import javax.persistence.Id;
 /**
  * сущность рейтинговой таблицы
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Ladder {
-    //private int rank;
     @Id
     private String username;
-    /**
-     * поле с средним количестсвом попыток до угадывания числа
-     */
     private int countOfTrys;
-    //private int AVGCountOfTrys;
-
-    //TODO написать тут или сервисе
-    public static <T> int getAVGcountOfTrys(T t) {
-        return 42;
-    }
-
 }

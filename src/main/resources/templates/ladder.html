@@ -5,19 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-таблица
-<!--<div>
+<div>
     <h1>Рейтинговая таблица</h1>
-    <table class="table table-striped">
+    <table border="4" bordercolor="#000000">
         <tr>
             <th>Username</th>
             <th>Average trys</th>
         </tr>
-        <tr th:each="count : ${counts}">
-            <td th:text="${count.id}"></td>
-            <td th:text="${count.name}"></td>
+        <tr th:each="user : ${ladder}">
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getCountOfTrys()}"></td>
         </tr>
     </table>
-</div>-->
+</div>
 </body>
 </html>

@@ -1,37 +1,27 @@
 package pakhmutov.bullscowsapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pakhmutov.bullscowsapp.gameLogic.NumberGenerator;
-import pakhmutov.bullscowsapp.entity.Game;
 import pakhmutov.bullscowsapp.gameLogic.Checker;
-import pakhmutov.bullscowsapp.repositories.GameRepository;
+import pakhmutov.bullscowsapp.gameLogic.NumberGenerator;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class GameService{
-    private final GameRepository gameRepository;
+@RequiredArgsConstructor
+public class GameService {
     private final Checker checker;
     private final NumberGenerator numberGenerator;
 
-    @Autowired
-    public GameService(GameRepository gameRepository, Checker checker, NumberGenerator numberGenerator) {
-        this.gameRepository = gameRepository;
-        this.checker = checker;
-        this.numberGenerator = numberGenerator;
-    }
-
     /**
-     * {@Link pakhmutov.bullscowsapp.gameLogic.Checker#check(List<Integer>, List<Integer>) check}
+     * @deprecated не используется ввиду необходимости использоваения стаической версии метода generateNumber(int i)
+     * класса NumberGenerator
      */
     public List<Integer> generate(int i) {
         List<Integer> result = new ArrayList<>();
         try {
-            result = numberGenerator.generateNumber(i);
+            result = numberGenerator.generateNumber(i);//ссылка на старую, нестатическую версию метода
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
@@ -39,30 +29,32 @@ public class GameService{
     }
 
     /**
-     * {@Link pakhmutov.bullscowsapp.gameLogic.NumberGenerator#generateNumber(int) generateNumber}
+     * @param userNumber комбинация цифр, введённая пользователем в виде строки
+     * @param sample     образец для сравнения
+     * @return трока с количеством быков и коров
      */
     public String check(List<Integer> userNumber, List<Integer> sample) {
         String result = "";
         try {
             result = checker.check(userNumber, sample);
-        } catch (IllegalArgumentException|NullPointerException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             e.printStackTrace();
         }
         return result;
     }
 
+    /**
+     * @param userNumberStr комбинация цифр, введённая пользователем в виде строки
+     * @param sample        образец для сравнения
+     * @return трока с количеством быков и коров
+     */
     public String check(String userNumberStr, List<Integer> sample) {
         String result = "";
         try {
             result = checker.check(userNumberStr, sample);
-        } catch (IllegalArgumentException|NullPointerException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             e.printStackTrace();
         }
         return result;
-    }
-
-    //@Query(value = "INSERT INTO Game VALUES (:username, :userNumber, :animalCode)", nativeQuery = true)
-    public void addTry(String username, List<Integer> userNumber, String animalCode) {
-        gameRepository.save(new Game(username, userNumber, animalCode));
     }
 }
