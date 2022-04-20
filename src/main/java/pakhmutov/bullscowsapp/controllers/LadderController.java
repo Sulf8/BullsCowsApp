@@ -21,7 +21,7 @@ public class LadderController {
      */
     @GetMapping()
     public String showLadder(Model model) {
-        model.addAttribute("ladder", ladderService.showLadder());
+        model.addAttribute("ladder", ladderService.showLadderWithAVG());
         return "ladder";
     }
 }

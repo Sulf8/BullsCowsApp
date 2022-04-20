@@ -12,9 +12,9 @@
             <th>Username</th>
             <th>Average trys</th>
         </tr>
-        <tr th:each="user : ${ladder}">
-            <td th:text="${user.getUsername()}"></td>
-            <td th:text="${user.getCountOfTrys()}"></td>
+        <tr th:each="l : ${ladder}">
+            <td th:text="${l.getUserName()}"></td>
+            <td th:text="${l.getCount()}"></td>
         </tr>
     </table>
 </div>
