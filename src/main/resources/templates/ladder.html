@@ -8,14 +8,18 @@
 <div>
     <h1>Рейтинговая таблица</h1>
     <table border="4" bordercolor="#000000">
+        <thead>
         <tr>
             <th>Username</th>
             <th>Average trys</th>
         </tr>
-        <tr th:each="l : ${ladder}">
-            <td th:text="${l.getUserName()}"></td>
-            <td th:text="${l.getCount()}"></td>
+        </thead>
+        <tbody>
+        <tr th:each="l : ${ladder2}">
+            <td th:text="${l.getUserName()}">Username</td>
+            <td th:text="${l.getCount()}">Average trys</td>
         </tr>
+        </tbody>
     </table>
 </div>
 </body>

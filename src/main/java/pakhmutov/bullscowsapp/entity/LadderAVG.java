@@ -14,8 +14,8 @@ import javax.persistence.Id;
 @Entity
 public class LadderAVG implements LadderStatistic {
     @Id
-    /*@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;*/
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String username;
     private int AVGCountOfTrys;
 

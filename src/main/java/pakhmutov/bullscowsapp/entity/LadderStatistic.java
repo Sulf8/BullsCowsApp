@@ -1,6 +1,6 @@
 package pakhmutov.bullscowsapp.entity;
 
 public interface LadderStatistic {
-    String  getUserName();
+    String getUserName();
     int getCount();
 }

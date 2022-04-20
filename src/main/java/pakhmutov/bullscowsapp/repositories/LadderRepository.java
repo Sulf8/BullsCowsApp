@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pakhmutov.bullscowsapp.entity.Ladder;
 import pakhmutov.bullscowsapp.entity.LadderAVG;
+import pakhmutov.bullscowsapp.entity.LadderStatistic;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface LadderRepository extends JpaRepository<Ladder, Integer> {
 
     @Query(value = "SELECT username, AVG(count_Of_Trys) FROM Ladder GROUP BY username ORDER BY AVG(count_Of_Trys) ASC",
             nativeQuery = true)
-    List<LadderAVG> findAllWithAVG();
+    List<LadderStatistic> findAllWithAVG();
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pakhmutov.bullscowsapp.entity.Ladder;
 import pakhmutov.bullscowsapp.entity.LadderAVG;
+import pakhmutov.bullscowsapp.entity.LadderStatistic;
 import pakhmutov.bullscowsapp.repositories.LadderRepository;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 public class LadderService {
     private final LadderRepository ladderRepository;
 
-    public List<LadderAVG> showLadderWithAVG(){
+    public List<LadderStatistic> showLadderWithAVG(){
         return ladderRepository.findAllWithAVG();
     }
 
@@ -27,5 +28,9 @@ public class LadderService {
     //@Query (value = "INSERT INTO Ladder VALUES (:username, :count))", nativeQuery = true)
     public void addInLadder(String username, int count) {
         ladderRepository.save(new Ladder(username, count));
+    }
+
+    public List<Ladder> showLadder() {
+        return ladderRepository.findAll();
     }
 }
