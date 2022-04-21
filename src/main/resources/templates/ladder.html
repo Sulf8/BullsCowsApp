@@ -15,12 +15,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="l : ${ladder2}">
+        <tr th:each="l : ${ladder}">
             <td th:text="${l.getUserName()}">Username</td>
-            <td th:text="${l.getCount()}">Average trys</td>
+            <td th:text="${l.getAvg()}">Average trys</td>
         </tr>
         </tbody>
     </table>
+</div>
+<div>
+    <br>
+    <br>
+    <b>
+        Чтобы сыграть снова перезапустите приложение.
+    </b>
 </div>
 </body>
 </html>

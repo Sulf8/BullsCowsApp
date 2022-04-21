@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * класс, описывающий попытки пользователя при угадывании заданного числа
+ * класс, описывающий попытки пользователя при угадывании числа
  */
 @Data
 @AllArgsConstructor

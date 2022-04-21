@@ -1,7 +1,6 @@
 package pakhmutov.bullscowsapp.gameLogic;
 
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +28,7 @@ public class NumberGenerator {
     };
 
     /**
+     * Метод, генерирующий случайно число, согласно правилам игры
      * @param rank разрядность числа, которое требуется сгенерировать,
      *             причём он должен быть в пределах размера набора исходных цифр.
      * @return случайное число в виде списка из его цифр.

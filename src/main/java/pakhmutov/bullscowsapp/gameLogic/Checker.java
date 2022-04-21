@@ -1,7 +1,6 @@
 package pakhmutov.bullscowsapp.gameLogic;
 
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -13,9 +12,10 @@ import java.util.stream.Collectors;
 public class Checker {
 
     /**
-     * @param userNumber комбинация цифр, введённая пользователем.
-     * @param sample образец для сравнения.
-     * @return строка с количеством быков и коров.
+     * Метод, проверяющий соответствие введённого и загаданного чисел
+     * @param userNumber комбинация цифр, введённая пользователем
+     * @param sample образец для сравнения
+     * @return строка с количеством быков и коров, по которой можно оценить успех попытки угадывания
      */
     public String check(List<Integer> userNumber, List<Integer> sample) {
         int bulls = 0;
@@ -42,9 +42,10 @@ public class Checker {
     }
 
     /**
+     * Метод, проверяющий соответствие введённого и загаданного чисел
      * @param userNumberStr комбинация цифр, введённая пользователем в виде строки
      * @param sample образец для сравнения
-     * @return строка с количеством быков и коров
+     * @return строка с количеством быков и коров, по которой можно оценить успех попытки угадывания
      */
     public String check(String userNumberStr, List<Integer> sample) {
         if (userNumberStr ==null ) throw new NullPointerException("пусто UserNumber!");

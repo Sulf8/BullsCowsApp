@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pakhmutov.bullscowsapp.gameLogic.Checker;
 import pakhmutov.bullscowsapp.gameLogic.NumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * взаимодействие с основным полем игры
+ */
 @Service
 @RequiredArgsConstructor
 public class GameService {
@@ -15,7 +17,7 @@ public class GameService {
     private final NumberGenerator numberGenerator;
 
     /**
-     * @deprecated не используется ввиду необходимости использоваения стаической версии метода generateNumber(int i)
+     * @deprecated не используется ввиду необходимости использоваения статической версии метода generateNumber(int i)
      * класса NumberGenerator
      */
     public List<Integer> generate(int i) {
@@ -29,9 +31,10 @@ public class GameService {
     }
 
     /**
-     * @param userNumber комбинация цифр, введённая пользователем в виде строки
-     * @param sample     образец для сравнения
-     * @return трока с количеством быков и коров
+     * Метод, проверяющий соответствие введённого и загаданного чисел
+     * @param userNumber комбинация цифр, введённая пользователем
+     * @param sample образец для сравнения
+     * @return строка с количеством быков и коров, по которой можно оценить успех попытки угадывания
      */
     public String check(List<Integer> userNumber, List<Integer> sample) {
         String result = "";
@@ -44,9 +47,10 @@ public class GameService {
     }
 
     /**
+     * Метод, проверяющий соответствие введённого и загаданного чисел
      * @param userNumberStr комбинация цифр, введённая пользователем в виде строки
-     * @param sample        образец для сравнения
-     * @return трока с количеством быков и коров
+     * @param sample образец для сравнения
+     * @return строка с количеством быков и коров, по которой можно оценить успех попытки угадывания
      */
     public String check(String userNumberStr, List<Integer> sample) {
         String result = "";

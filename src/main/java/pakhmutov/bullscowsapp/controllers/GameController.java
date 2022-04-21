@@ -9,7 +9,6 @@ import pakhmutov.bullscowsapp.entity.UserTry;
 import pakhmutov.bullscowsapp.gameLogic.NumberGenerator;
 import pakhmutov.bullscowsapp.service.GameService;
 import pakhmutov.bullscowsapp.service.LadderService;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +26,7 @@ public class GameController {
     private String username;
 
     /**
+     * Метод, добавляющий в модель число - разрядность для загаданного числа
      * @return число, устанавливающее "сложность задачи" - именно такая разрядность будет у загаданного числа и,
      * следовательно, столько чисел предстоит угадывать
      */
@@ -36,6 +36,7 @@ public class GameController {
     }
 
     /**
+     * Метод, добавляющий в модель загаданное число
      * @return образец для сравнения
      */
     @ModelAttribute("sample")
@@ -44,6 +45,7 @@ public class GameController {
     }
 
     /**
+     * Метод, добавляющий в модель имя текущего пользователя
      * @return имя пользователя, переданное из UsersController
      */
     @ModelAttribute("username")
@@ -53,6 +55,7 @@ public class GameController {
     }
 
     /**
+     * Метод, возвращающий главную страницу игры
      * @return главная страница игры
      */
     @GetMapping
@@ -62,6 +65,7 @@ public class GameController {
     }
 
     /**
+     * Метод для проверки соответствия загаданного числа и числа, введённого пользователем
      * @param sample образец для сравнения
      * @param userNumberStr комбинация цифр, введённая пользователем в виде строки
      * @return страница окончания игры, если пользователь отгадал заданное число
@@ -81,6 +85,7 @@ public class GameController {
     }
 
     /**
+     * Метод возвращающий страницу поздравления с угадыванием загаданного числа
      * @param username имя пользователя
      * @param sample образец для сравнения
      * @return страница окончания игры с сылкой на рейтинговую таблицу

@@ -1,12 +1,9 @@
 package pakhmutov.bullscowsapp.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import pakhmutov.bullscowsapp.entity.User;
 import pakhmutov.bullscowsapp.repositories.UsersRepository;
-
 import java.util.List;
 
 /**
@@ -18,6 +15,7 @@ public class UserService {
     private final UsersRepository usersRepository;
 
     /**
+     * Метод, показывающий таблицу со всеми пользователями
      * @return список всех пользователей
      */
     //@Query (value = "SELECT * FROM Users", nativeQuery = true)
@@ -26,6 +24,7 @@ public class UserService {
     }
 
     /**
+     * Метод, показывающий запись таблицы с конкретным пользователем
      * @param userName имя пользователя
      * @return пользователь с данным именем
      */
@@ -35,8 +34,8 @@ public class UserService {
     }
 
     /**
+     * Метод, добавляющий пользователю в таблицу пользователей
      * @param user пользователь, которого необходимо добавить в базу данных
-     * добавляет пользователя в базу данных
      */
     //@Query (value = "INSERT INTO Users VALUES (#{user.getUsername()}, #{user.getPassword()})", nativeQuery = true)
     public void addUser(User user) {

@@ -1,12 +1,10 @@
 package pakhmutov.bullscowsapp.gameLogic;
 
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Arrays;
 import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CheckerTest {
     @Test
